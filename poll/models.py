@@ -4,10 +4,8 @@ from django.db import models
 from django.utils import timezone
 
 
-
-
-
 # Create your models here.
+# model for question
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
@@ -19,6 +17,7 @@ class Question(models.Model):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
 
+# model for choice, related to question
 class Choice(models.Model):
     question = models.ForeignKey(Question)
     choice_text = models.CharField(max_length=200)
