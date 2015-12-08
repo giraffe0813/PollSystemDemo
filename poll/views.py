@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Question, Choice
 from django.core.urlresolvers import reverse
+from django.views import generic
+
 
 # Create your views here.
 def index(request):
@@ -35,5 +37,27 @@ def vote(request, question_id):
     selected_choice.save()
     # success deal with post data always return HttpResponseRedirect, prevent user submit twice
     return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
+
+
+# ListView represent display a list of objects
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_question_list'
+
+    def get_queryset(self):
+        # return last five published question
+        return Question.objects.order_by('-pub_date')[:5]
+
+
+# DetailView represent display a detail page for a particular type of object
+#
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+
+
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = 'polls/results.html'
 
 
