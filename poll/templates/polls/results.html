@@ -1,9 +1,29 @@
-<h1>{{ question.question_text }}</h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+ <head>
+    <meta charset="utf-8">
+    <title>poll system index</title>
 
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul>
+    <!-- Bootstrap -->
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 
-<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  </head>
+<body>
+    <div class="container">
+       <div class="panel panel-info">
+        <div class="panel-heading">
+            投票问题:{{ question.question_text }}
+        </div>
+        <ul class="list-group">
+        {% for choice in question.choice_set.all %}
+            <li class="list-group-item">{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+        </ul>
+
+        <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+       </div>
+    </div>
+</body>
+</html>
