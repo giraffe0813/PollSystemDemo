@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Question, Choice
 from django.core.urlresolvers import reverse
 from django.views import generic
+from django.utils import timezone
 
 
 # Create your views here.
@@ -46,7 +47,9 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         # return last five published question
-        return Question.objects.order_by('-pub_date')[:5]
+        return Question.objects.filter(
+            pub_date__lte=timezone.now()
+        ).order_by('-pub_date')[:5]
 
 
 # DetailView represent display a detail page for a particular type of object
