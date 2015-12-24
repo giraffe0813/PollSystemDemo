@@ -18,6 +18,7 @@
 依据实际使用的数据库地址，用户，密码修改下面的配置
 
 ```json
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -28,6 +29,7 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
 ```
 
 4.建表
@@ -43,15 +45,20 @@ DATABASES = {
 两种方法
 
  * 最简单的方法
+ 
  ```
   $ pyhton manage.py runserver
  ```
  * 第二种方法 需要安装gunicorn
+ 
  ```
   $ gunicorn mysite.wsgi:application -b 127.0.0.1:8000 --reload
  ```
  
- 6 访问
- 浏览器中访问 localhost:8000 即可
+ 
+ 
+ 
+6 访问
+浏览器中访问 localhost:8000 即可
 
 
