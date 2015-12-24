@@ -58,7 +58,36 @@ DATABASES = {
  
  
  
-6 访问
+6 访问   
 浏览器中访问 localhost:8000 即可
+
+### 使用投票系统管理后台
+
+1 创建管理员账号
+```
+  $ cd PollSystemDemo
+  $ python manage.py createsuperuser 
+```
+按照提示设置用户名，邮箱和密码
+
+2 运行项目
+
+ * 最简单的方法
+ 
+ ```
+  $ pyhton manage.py runserver
+ ```
+ * 第二种方法 需要安装gunicorn
+ 
+ ```
+  $ gunicorn mysite.wsgi:application -b 127.0.0.1:8000 --relo
+ ```
+
+3 访问管理后台
+
+浏览器访问 localhost:8000/admin
+按照第一步设置的用户名和密码登陆就可以使用管理系统了
+
+🎅🎅🏾🎅🏽🎅🏻🎅🏼
 
 
